@@ -5,16 +5,19 @@
            <span class="stock-sub-title">
                ( 
                    <span> Current Price: Rp {{currentPrice}}  </span>
-                   <span v-if="quantityStock">| Quantity: {{ quantityStock }} | Price AVG: {{ priceAVG }}</span>
+                   <span v-if="quantityStock">| Quantity: {{ quantityStock }} Lot | Price AVG: {{ priceAVG }}</span>
                 )
            </span>
         </div>
         <div class="stock-content">
             <input type="number" placeholder="Quantity" v-model="stockSummary.quantityStock">
-            <button class="btn-sell" v-if="quantityStock">Sell</button>
+            <button class="btn-sell" v-if="quantityStock" @click="sellStock">Sell</button>
             <button class="btn-buy" v-else @click="buyStock">Buy</button>
         </div>
         <div class="stock-footer" v-if="quantityStock">
+            <p>
+               <strong> Total Beli:  {{ totalBuy }} </strong>
+            </p>
             <p>
                <strong> Floating Profit:  {{ floatingGainLose }} </strong>
             </p>
@@ -40,7 +43,7 @@ export default {
             }
         }
     },
-    props: ['codeStock', 'currentPrice', 'companyName', 'quantityStock', 'priceAVG', 'floatingGainLose'],
+    props: ['codeStock', 'currentPrice', 'companyName', 'quantityStock', 'priceAVG', 'floatingGainLose', 'totalBuy'],
     methods:{
         buyStock(){
             if(this.stockSummary.quantityStock > 0){
@@ -54,7 +57,20 @@ export default {
             }else{
                 alert("Tidak Dapat membeli Stock dengan Quantity 0")
             }
-        }   
+        },
+        sellStock(){
+            if(this.stockSummary.quantityStock > 0){
+                this.$store.dispatch(
+                    portofolioTypes.ACTION_SELL_STOCK, 
+                    { 
+                        ...this.stockSummary,
+                        currentPrice: this.currentPrice,
+                    }
+                )
+            }else{
+                alert("Tidak Dapat menjual Stock dengan Quantity 0")
+            }
+        }
     },
     computed:{
         totalHarga(){

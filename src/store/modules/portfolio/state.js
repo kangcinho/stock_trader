@@ -1,6 +1,12 @@
 const state = {
     saldo: 1000000000,
-    stocks:[]
+    stocks:[
+        // {
+        //     codeStock: 'DYAN',
+        //     priceAVG: 50,
+        //     quantityStock: 9000,
+        // }
+    ]
 }
 
 export default state;
@@ -11,6 +17,5 @@ export default state;
 //         codeStock: 'DYAN',
 //         priceAVG: 50,
 //         quantityStock: 9000,
-//         floatingGainLose: 0
 //     }
 // ]

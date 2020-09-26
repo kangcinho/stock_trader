@@ -9,6 +9,7 @@
             :quantityStock="stock.quantityStock"
             :priceAVG="stock.priceAVG"
             :floatingGainLose="stock.floatingGainLose"
+            :totalBuy="stock.totalBuy"
         />
     </div>
 </template>

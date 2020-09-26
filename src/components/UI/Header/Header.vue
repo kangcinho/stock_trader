@@ -3,7 +3,8 @@
         <div class="logo">
             <router-link to="/"><h1>STOCK TRADER</h1></router-link>
             
-            <h3>Saldo: {{ saldo }}</h3>
+            <p>Saldo: {{ saldo }} </p>
+            <p><span v-if="totalProfit !== 0">Floating Profit: {{ totalProfit }} </span></p>
         </div>
         <app-navigation-items />
     </div>
@@ -20,7 +21,8 @@ export default {
     },
     computed:{
         ...mapGetters({
-            saldo: portofolioTypes.GETTER_SALDO_READABLE
+            saldo: portofolioTypes.GETTER_SALDO_READABLE,
+            totalProfit: portofolioTypes.GETTER_TOTAL_PROFIT
         })
     }
 }
