@@ -17,6 +17,12 @@ const routes = [
         path: '/stocks',
         component: Stocks,
         name: 'stocks'
+    },
+    {
+        path: '*',
+        redirect: {
+            name: 'home'
+        }
     }
 ]
 
