@@ -4,8 +4,8 @@
            {{ codeStock }}
            <span class="stock-sub-title">
                ( 
-                   <span> Price: Rp {{currentPrice}}  </span>
-                   <span v-if="quantityStock">| Quantity: {{ quantityStock }} </span>
+                   <span> Current Price: Rp {{currentPrice}}  </span>
+                   <span v-if="quantityStock">| Quantity: {{ quantityStock }} | Price AVG: {{ priceAVG }}</span>
                 )
            </span>
         </div>
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-    props: ['codeStock', 'currentPrice', 'companyName', 'quantityStock']
+    props: ['codeStock', 'currentPrice', 'companyName', 'quantityStock', 'priceAVG']
 }
 </script>
 
@@ -42,7 +42,7 @@ export default {
         font-size: 20px;
     }
     #stock .stock-title .stock-sub-title{
-        font-size: 13px;
+        font-size: 11px;
     }
 
     #stock .stock-content{

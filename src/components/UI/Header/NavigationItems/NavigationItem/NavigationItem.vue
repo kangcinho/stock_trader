@@ -1,12 +1,17 @@
 <template>
     <li>
-        <router-link :to="routerLink"> {{ label }} </router-link>
+        <router-link 
+            :to="routerLink" 
+            v-if="isMenuRouter"> {{ label }} </router-link>
+        <button
+            @click="routerLink" 
+            v-else>{{ label }}</button>
     </li>
 </template>
 
 <script>
 export default {
-    props: ['label', 'routerLink']
+    props: ['label', 'routerLink', 'isMenuRouter']
 }
 </script>
 
@@ -24,5 +29,20 @@ export default {
     {
         background-color:#A4B0BD ;
         font-weight: bold;
+    }
+    li button{
+        padding: 0px 30px;
+        color: #4C4B4B;
+        border: none;
+        background-color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        outline: none;
+    }
+    li button:hover
+    {
+        /* background-color:#A4B0BD ; */
+        font-weight: bold;
+        cursor: pointer;
     }
 </style>

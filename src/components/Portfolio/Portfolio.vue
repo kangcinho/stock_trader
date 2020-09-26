@@ -7,6 +7,7 @@
             :currentPrice="stock.currentPrice"
             :companyName="stock.companyName"
             :quantityStock="10"
+            :priceAVG="200"
         />
     </div>
 </template>

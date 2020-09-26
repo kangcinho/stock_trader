@@ -6,12 +6,15 @@
                 :key="index"
                 :label="navigationItem.label"
                 :routerLink="navigationItem.routerLink"
+                :isMenuRouter="navigationItem.isMenuRouter"
             />
         </ul>
     </div>
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+import * as stockTypes from '../../../../store/modules/stock/types'
 import NavigationItem from './NavigationItem/NavigationItem'
 export default {
     data(){
@@ -19,29 +22,39 @@ export default {
             navigationItems:[
                 {
                     label: 'Portfolio',
-                    routerLink: '/portfolio'
+                    routerLink: '/portfolio',
+                    isMenuRouter: true
                 },
                 {
                     label: 'Stocks',
-                    routerLink: '/stocks'
+                    routerLink: '/stocks',
+                    isMenuRouter: true
                 },
                 {
                     label: 'End Day',
-                    routerLink: '/end-day'
+                    routerLink: this.getCurrentPrice,
+                    isMenuRouter: false
                 },
                 {
                     label: 'Save',
-                    routerLink: '/save'
+                    routerLink: this.getCurrentPrice,
+                    isMenuRouter: false
                 },
                 {
                     label: 'Load',
-                    routerLink: '/load'
+                    routerLink: this.getCurrentPrice,
+                    isMenuRouter: false
                 }
             ]
         }
     },
     components:{
         appNavigationItem: NavigationItem
+    },
+    methods:{
+        ...mapActions({
+            getCurrentPrice: stockTypes.ACTION_CURRENT_PRICE
+        })
     }
 }
 </script>
