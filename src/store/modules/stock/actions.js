@@ -4,7 +4,8 @@ const actions = {
         context.commit(
             stockTypes.MUTATION_CURRENT_PRICE
         )
-    }
+    },
+    
 }
 
 export default actions;

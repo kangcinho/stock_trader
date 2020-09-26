@@ -3,17 +3,25 @@
         <div class="logo">
             <router-link to="/"><h1>STOCK TRADER</h1></router-link>
             
-            <h3>Saldo: Rp 1000</h3>
+            <h3>Saldo: {{ saldo }}</h3>
         </div>
         <app-navigation-items />
     </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+import * as portofolioTypes from '../../../store/modules/portfolio/types'
+
 import NavigationItems from './NavigationItems/NavigationItems'
 export default {
     components:{
         appNavigationItems: NavigationItems,
+    },
+    computed:{
+        ...mapGetters({
+            saldo: portofolioTypes.GETTER_SALDO_READABLE
+        })
     }
 }
 </script>

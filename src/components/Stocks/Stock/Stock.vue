@@ -10,16 +10,64 @@
            </span>
         </div>
         <div class="stock-content">
-            <input type="text" placeholder="Quantity">
+            <input type="number" placeholder="Quantity" v-model="stockSummary.quantityStock">
             <button class="btn-sell" v-if="quantityStock">Sell</button>
-            <button class="btn-buy" v-else>Buy</button>
+            <button class="btn-buy" v-else @click="buyStock">Buy</button>
+        </div>
+        <div class="stock-footer" v-if="quantityStock">
+            <p>
+               <strong> Floating Profit:  {{ floatingGainLose }} </strong>
+            </p>
+        </div>
+        <div class="stock-footer" v-else>
+            <p>
+                <strong>Total Harga: {{ totalHarga }}</strong>
+            </p>
         </div>
     </div>
 </template>
 
 <script>
+
+import * as portofolioTypes from '../../../store/modules/portfolio/types'
+
 export default {
-    props: ['codeStock', 'currentPrice', 'companyName', 'quantityStock', 'priceAVG']
+    data(){
+        return {
+            stockSummary: {
+                codeStock: this.codeStock,
+                quantityStock: 0
+            }
+        }
+    },
+    props: ['codeStock', 'currentPrice', 'companyName', 'quantityStock', 'priceAVG', 'floatingGainLose'],
+    methods:{
+        buyStock(){
+            if(this.stockSummary.quantityStock > 0){
+                this.$store.dispatch(
+                    portofolioTypes.ACTION_BUY_STOCK, 
+                    { 
+                        ...this.stockSummary,
+                        currentPrice: this.currentPrice
+                    }
+                )
+            }else{
+                alert("Tidak Dapat membeli Stock dengan Quantity 0")
+            }
+        }   
+    },
+    computed:{
+        totalHarga(){
+            const currencyFormat = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 4,
+            });
+            const harga = this.stockSummary.quantityStock * this.currentPrice * 100
+            return currencyFormat.format(harga)
+        }
+    }
 }
 </script>
 
@@ -45,7 +93,8 @@ export default {
         font-size: 11px;
     }
 
-    #stock .stock-content{
+    #stock .stock-content,
+    #stock .stock-footer{
         padding: 10px;
         overflow: auto;
     }
@@ -55,6 +104,7 @@ export default {
         height: 30px;
         width: 300px;
         padding: 10px;
+        border: 1px solid #ccc;
     }
     #stock .stock-content input:focus{
         outline:  1px solid #75DA8B;

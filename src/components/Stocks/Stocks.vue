@@ -13,11 +13,12 @@
 <script>
 import { mapGetters } from 'vuex'
 import * as stockTypes from '../../store/modules/stock/types'
+
 import Stock from './Stock/Stock'
 export default {
     computed: {
         ...mapGetters({
-            stockLists: stockTypes.GETTER_STOCK
+            stockLists: stockTypes.GETTER_ALL_STOCK
         })
     },
     components:{

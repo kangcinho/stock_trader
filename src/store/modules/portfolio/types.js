@@ -1,0 +1,18 @@
+// PORTFOLIO MUTATIONS
+export const MUTATION_SALDO = 'portfolio/MUTATION_SALDO'
+export const MUTATION_PRICE_AVG = 'portfolio/MUTATION_PRICE_AVG'
+export const MUTATION_QUANTITY = 'portfolio/MUTATION_QUANTITY'
+export const MUTATION_GAIN_LOSE = 'portfolio/MUTATION_GAIN_LOSE'
+export const MUTATION_BUY_STOCK = 'stock/MUTATION_BUY_STOCK'
+
+// PORTFOLIO ACTIONS
+export const ACTION_SALDO = 'portfolio/ACTION_SALDO'
+export const ACTION_PRICE_AVG = 'portfolio/ACTION_PRICE_AVG'
+export const ACTION_QUANTITY = 'portfolio/ACTION_QUANTITY'
+export const ACTION_GAIN_LOSE = 'portfolio/ACTION_GAIN_LOSE'
+export const ACTION_BUY_STOCK = 'stock/ACTION_BUY_STOCK'
+
+// PORTFOLIO GETTERS
+export const GETTER_SALDO = 'portfolio/GETTER_SALDO'
+export const GETTER_SALDO_READABLE = 'portfolio/GETTER_SALDO_READABLE'
+export const GETTER_PORTOFOLIO_STOCK = 'portfolio/GETTER_PORTOFOLIO_STOCK'
