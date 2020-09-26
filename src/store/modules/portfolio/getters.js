@@ -9,11 +9,21 @@ const formatter = new Intl.NumberFormat('en-US', {
   });
 
 const getters = {
+    [portfolioTypes.GETTER_STATE]: (state) => {
+        return {
+            saldo: state.saldo,
+            stocks: state.stocks
+        }
+    },
     [portfolioTypes.GETTER_SALDO]: (state) => {
         return state.saldo;
     },
     [portfolioTypes.GETTER_SALDO_READABLE]: (state) => {
         return formatter.format(state.saldo)
+    },
+    [portfolioTypes.GETTER_PORTOFOLIO_ALL_STOCK]: (state, getters) => {
+        const portfolio = [...state.stocks];
+        return portfolio
     },
     [portfolioTypes.GETTER_PORTOFOLIO_STOCK]: (state, getters) => {
         const portfolio = [...state.stocks];

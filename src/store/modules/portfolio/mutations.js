@@ -5,14 +5,14 @@ const mutations = {
         let stock = {};
         
         // CEK Stock Exist at Portofolio
-        const portoStockAll = [...getters[portfolioTypes.GETTER_PORTOFOLIO_STOCK]]
+        const portoStockAll = [...getters[portfolioTypes.GETTER_PORTOFOLIO_ALL_STOCK]]
         const stockExistIndex = portoStockAll.findIndex( (porto) => porto.codeStock === payload.codeStock)
         
         if(stockExistIndex !== -1){
             stock = portoStockAll[stockExistIndex]
             stock.priceAVG = ( (stock.quantityStock * stock.priceAVG) + ( +payload.quantityStock * +payload.currentPrice)  ) / ( +payload.quantityStock + stock.quantityStock) 
             stock.priceAVG = Math.round((stock.priceAVG + Number.EPSILON) * 100) / 100
-            console.log(stock.priceAVG)
+            // console.log(stock.priceAVG)
             stock.quantityStock += +payload.quantityStock
         }else{
             stock.codeStock = payload.codeStock
@@ -35,7 +35,7 @@ const mutations = {
         let stock = {};
 
         // CEK Stock Exist at Portofolio
-        const portoStockAll = [...getters[portfolioTypes.GETTER_PORTOFOLIO_STOCK]]
+        const portoStockAll = [...getters[portfolioTypes.GETTER_PORTOFOLIO_ALL_STOCK]]
         const stockExistIndex = portoStockAll.findIndex( (porto) => porto.codeStock === payload.codeStock)
 
         if(stockExistIndex !== -1){
@@ -56,6 +56,11 @@ const mutations = {
             }
             alert(`Penjualan Stock ${payload.codeStock} Berhasil`)
         }
+    },
+    [portfolioTypes.MUTATION_SET_STATE]: (state, payload) => {
+        state.saldo = payload.saldo;
+        state.stocks = payload.stocks ? payload.stocks : [] ;
+        alert("Load Berhasil")
     }
 }
 

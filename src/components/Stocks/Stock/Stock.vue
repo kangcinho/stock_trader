@@ -155,5 +155,10 @@ export default {
         cursor: pointer;
     }
 
-    
+    .red{
+        color: red
+    }
+    .green{
+        color: green
+    }
 </style>

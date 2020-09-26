@@ -15,6 +15,7 @@
 <script>
 import {mapActions} from 'vuex'
 import * as stockTypes from '../../../../store/modules/stock/types'
+import * as portfolioTypes from '../../../../store/modules/portfolio/types'
 import NavigationItem from './NavigationItem/NavigationItem'
 export default {
     data(){
@@ -37,12 +38,12 @@ export default {
                 },
                 {
                     label: 'Save',
-                    routerLink: this.getCurrentPrice,
+                    routerLink: this.saveAllState,
                     isMenuRouter: false
                 },
                 {
                     label: 'Load',
-                    routerLink: this.getCurrentPrice,
+                    routerLink: this.loadAllState,
                     isMenuRouter: false
                 }
             ]
@@ -53,8 +54,16 @@ export default {
     },
     methods:{
         ...mapActions({
-            getCurrentPrice: stockTypes.ACTION_CURRENT_PRICE
-        })
+            getCurrentPrice: stockTypes.ACTION_CURRENT_PRICE,
+        }),
+        saveAllState(){
+            this.$store.dispatch(portfolioTypes.ACTION_EXPORT_STATE_TO_FIREBASE)
+            this.$store.dispatch(stockTypes.ACTION_EXPORT_STATE_TO_FIREBASE)
+        },
+        loadAllState(){
+            this.$store.dispatch(portfolioTypes.ACTION_IMPORT_STATE_FROM_FIREBASE)
+            this.$store.dispatch(stockTypes.ACTION_IMPORT_STATE_FROM_FIREBASE)
+        }
     }
 }
 </script>

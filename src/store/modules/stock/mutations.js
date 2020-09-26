@@ -9,6 +9,9 @@ const mutations = {
            const currentPrice = (Math.random() * (maxRangePriceStock - minRangePriceStock)) + minRangePriceStock
            stock.currentPrice = +(currentPrice.toFixed(0))
        })
+    },
+    [stockTypes.MUTATION_SET_STATE]: (state, payload) => {
+        state.stocks = payload;
     }
 }
 
